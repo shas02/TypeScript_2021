@@ -8,31 +8,60 @@ interface IAnimal {
     name: string,
     move: string[],
     say: string,
-    information: Function
+
+    information(): void;
 }
 
-const Cat: IAnimal = {
-    name: 'Cat',
-    move: ['ходит', 'бегает'],
-    say: 'Мяу',
-    information: () => {
-        console.log(Cat)
+class Cat implements IAnimal {
+    name: string;
+    move: string[];
+    say: string;
+
+    constructor(name: string = 'Cat', move: string[] = ['ходит', 'бегает'], say: string = 'Мяу') {
+        this.name = name;
+        this.move = move;
+        this.say = say;
+    }
+
+    information() {
+        console.log(this.name, this.move, this.say)
     }
 }
-const Bird: IAnimal = {
-    name: 'Bird',
-    move: ['ходит', 'бегает', 'летает'],
-    say: 'Кар-Кар',
-    information: () => {
-        console.log(Bird)
+
+let Barsick = new Cat('Barsick');
+console.log(Barsick);
+Barsick.information();
+
+class Bird implements IAnimal {
+    name: string;
+    move: string[];
+    say: string;
+
+    constructor(name: string = 'Bird', move: string[] = ['ходит', 'бегает', 'летает'], say: string = 'Кар-Кар') {
+        this.name = name;
+        this.move = move;
+        this.say = say;
+    }
+
+    information() {
+        console.log(this.name, this.move, this.say)
     }
 }
-const Fish: IAnimal = {
-    name: 'Fish',
-    move: ['плавает'],
-    say: 'Рыбы не разговаривают',
-    information: () => {
-        console.log(Fish)
+
+class Fish implements IAnimal {
+
+    name: string;
+    move: string[];
+    say: string;
+
+    constructor(name: string = 'Fish', move: string[] = ['плавает'], say: string = 'Рыбы не разговаривают') {
+        this.name = name;
+        this.move = move;
+        this.say = say;
+    }
+
+    information() {
+        console.log(this.name, this.move, this.say)
     }
 }
 
@@ -44,7 +73,7 @@ abstract class Shape {
     b: number
 
 
-    constructor(a: number, b: number) {
+    protected constructor(a: number, b: number) {
         this.a = a;
         this.b = b;
 
@@ -80,7 +109,8 @@ class Triangle extends Shape {
     area(): void {
         let p = (this.a + this.b + this.c) / 2
         let S = Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c));
-        console.log(S)
+
+        S > 0 ? console.log(S) : console.log('Трикутника з такими сторонами існувати не може')
     }
 }
 
@@ -97,17 +127,18 @@ class Rectangle extends Shape {
         let P = 2 * (this.a + this.b)
         console.log(P);
     }
+
     area() {
         super.area();
     }
 }
 
 // кладем в массив экземпляры классов(количество может быть любым но мин 2)
-let Triangle1 = new Triangle(3,7,9);
-let Triangle2 = new Triangle(14,14,14);
+let Triangle1 = new Triangle(3, 7, 256);
+let Triangle2 = new Triangle(14, 14, 14);
 
-let Rectangle1 = new Rectangle(4,34);
-let Rectangle2 = new Rectangle(18,20);
+let Rectangle1 = new Rectangle(4, 34);
+let Rectangle2 = new Rectangle(18, 20);
 
 let Arr = [Triangle1, Triangle2, Rectangle1, Rectangle2];
 
