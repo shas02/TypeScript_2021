@@ -79,15 +79,10 @@ abstract class Shape {
 
     }
 
-    perimeter(): void {
-        let P = this.a + this.b
-        console.log(P)
-    }
+    abstract perimeter(): void;
 
-    area(): void {
-        let S = this.a * this.b
-        console.log(S)
-    }
+
+    abstract area(): void;
 }
 
 // создать два класса Triangle и Rectangle и унаследовать их от Shape
@@ -128,8 +123,9 @@ class Rectangle extends Shape {
         console.log(P);
     }
 
-    area() {
-        super.area();
+    area(): void {
+        let S = this.a * this.b
+        console.log(S)
     }
 }
 
